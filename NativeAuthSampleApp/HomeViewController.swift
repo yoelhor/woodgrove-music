@@ -27,13 +27,33 @@ import UIKit
 
 // swiftlint:disable file_length
 class HomeViewController: UIViewController {
+    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var resultTextView: UITextView!
 
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
-
+    
+    let songs = [
+        "Born to be wild (Steppenwolf)",
+        "I wanna dance with somebody (Whitney Houston)",
+        "Livin on a prayer (Bon Jovi)",
+        "Beat it (Michael Jackson)",
+        "Ace of Spades (Motorhead)",
+        "Wake me up before you go-go (Wham!)",
+        "What’s Love Got to Do with It (Tina Turner)",
+        "Express Yourself (Madonna)",
+        "Super Trouper (Abba)",
+        "Queen Of Hearts (Juice Newton)",
+        "Islands in the stream (Dolly Parton)",
+        "Always on my mind (Willie Nelson)",
+        "Into the Groove (Madonna)",
+        "When doves cry (Prince)",
+        "Never gonna give you up (Rick Astley)",
+        "Need you tonight (INXS)"
+    ]
+    
     var nativeAuth: MSALNativeAuthPublicClientApplication!
 
     var verifyCodeViewController: VerifyCodeViewController?
@@ -42,7 +62,10 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         do {
             nativeAuth = try MSALNativeAuthPublicClientApplication(
                 clientId: Configuration.clientId,
@@ -62,11 +85,11 @@ class HomeViewController: UIViewController {
     }
 
     func showResultText(_ text: String) {
-        resultTextView.text = text
+        //resultTextView.text = text
     }
 
     func updateUI() {
-        let signedIn = (accountResult != nil)
+        //let signedIn = (accountResult != nil)
 
         //signUpButton.isEnabled = !signedIn
         //signInButton.isEnabled = !signedIn
@@ -88,6 +111,29 @@ class HomeViewController: UIViewController {
 
             updateUI()
         }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate
+{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected me")
+    }
+}
+
+extension HomeViewController: UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return songs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        cell.textLabel?.text = songs[indexPath.row]
+        
+        return cell
     }
 }
 
