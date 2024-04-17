@@ -28,12 +28,8 @@ import UIKit
 // swiftlint:disable file_length
 class HomeViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var resultTextView: UITextView!
-
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var welcomeTo: UILabel!
+    var WelcomeMessage: String!
     
     let songs = [
         "Born to be wild (Steppenwolf)",
@@ -55,11 +51,11 @@ class HomeViewController: UIViewController {
     ]
     
     var nativeAuth: MSALNativeAuthPublicClientApplication!
-
+    
     var verifyCodeViewController: VerifyCodeViewController?
-
+    
     var accountResult: MSALNativeAuthUserAccountResult?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,18 +74,19 @@ class HomeViewController: UIViewController {
             print("Unable to initialize MSAL \(error)")
         }
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         retrieveCachedAccount()
     }
-
+    
     func updateUI() {
         self.tableView.reloadData()
     }
-
+    
     func retrieveCachedAccount() {
+                
         accountResult = nativeAuth.getNativeAuthUserAccount()
         if let accountResult = accountResult, let homeAccountId = accountResult.account.homeAccountId?.identifier {
             print("Account found in cache: \(homeAccountId)")
@@ -98,9 +95,12 @@ class HomeViewController: UIViewController {
             accountResult.getAccessToken(delegate: self)
         } else {
             print("No account found in cache")
-
+            
             accountResult = nil
-
+            
+            // Hide the welcome message
+            self.welcomeTo.text = "";
+            
             updateUI()
         }
     }
@@ -131,7 +131,7 @@ extension HomeViewController: UITableViewDataSource
         
         // Enable or disable the play button if the user signed-in
         cell.playButton.isEnabled = (accountResult != nil)
-
+        
         return cell
     }
 }
@@ -139,11 +139,35 @@ extension HomeViewController: UITableViewDataSource
 extension HomeViewController: CredentialsDelegate {
     
     // In the most common scenario, you receive a call to this method indicating
-    // that the user obtained an access token. 
+    // that the user obtained an access token.
     func onAccessTokenRetrieveCompleted(result: MSALNativeAuthTokenResult) {
         
         // MSAL returns the access token, scopes and expiration date for the access token for the account.
         print("Access Token: \(result.accessToken)")
+        
+        
+        
+        let url = URL(string: "https://api.woodgrovedemo.com/jwt?token=" + result.accessToken)!
+        
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
+                
+                self.WelcomeMessage = "Hey " + json["name"]! + "! songs you love:"
+                
+                // Show the welcome message
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                    print("Timer fired!")
+                    self.welcomeTo.text = self.WelcomeMessage
+                }
+            } catch {
+                self.WelcomeMessage = "";
+            }
+        })
+        
+        task.resume()
         
         // Update the UI that the user signed-in
         updateUI()
