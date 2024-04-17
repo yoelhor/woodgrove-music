@@ -108,7 +108,7 @@ class EmailAndPasswordViewController: UIViewController {
     @IBAction func signUpPressed(_: Any) {
         
         // Check if the required fields
-        guard let email = signUpNameTextField.text, let password = signUpPasswordTextField.text else {
+        guard let email = signUpEmailTextField.text, let password = signUpPasswordTextField.text else {
             resultTextView.text = "Email or password not set"
             return
         }
