@@ -48,7 +48,10 @@ class EmailAndPasswordViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var accessTokenTextView: UITextView!
     @IBOutlet weak var welcomeTo: UILabel!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var readClaimsButton: UIButton!
     var WelcomeMessage: String!
+    var accessToken: String!
     var Claims = [[String]]()
     
     // Shared UI elements
@@ -61,6 +64,9 @@ class EmailAndPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         // On view load initiate the MSAL library
         do {
@@ -80,6 +86,15 @@ class EmailAndPasswordViewController: UIViewController {
         
         // When the view will apear chheck the account
         retrieveCachedAccount()
+    }
+
+    // On start sign-up, show the sign-up container
+    @IBAction func readClaimsPressed(_: Any) {
+        
+        if let url = URL(string: "https://jwt.ms/#access_token=" + self.accessToken), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+        
     }
     
     // On start sign-up, show the sign-up container
@@ -164,6 +179,7 @@ class EmailAndPasswordViewController: UIViewController {
     
     func retrieveCachedAccount() {
         accountResult = nativeAuth.getNativeAuthUserAccount()
+        accessToken = ""
         
         if let accountResult = accountResult, let homeAccountId = accountResult.account.homeAccountId?.identifier {
             print("Account found in cache: \(homeAccountId)")
@@ -171,6 +187,7 @@ class EmailAndPasswordViewController: UIViewController {
             accountResult.getAccessToken(delegate: self)
         } else {
             print("No account found in cache")
+            
             
             accountResult = nil
             
@@ -339,7 +356,7 @@ extension EmailAndPasswordViewController: CredentialsDelegate {
         
         print("Access Token: \(result.accessToken)")
         
-        accessTokenTextView.text = result.accessToken
+        accessToken = result.accessToken
         showResultText("Signed in.")
         updateUI()
         
@@ -373,6 +390,7 @@ extension EmailAndPasswordViewController: CredentialsDelegate {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                     print("Timer fired!")
                     self.welcomeTo.text = self.WelcomeMessage
+                    self.tableView.reloadData()
                 }
             } catch {
                 self.WelcomeMessage = "";
@@ -455,5 +473,35 @@ extension EmailAndPasswordViewController {
         dismiss(animated: true)
         verifyCodeViewController = nil
         
+    }
+}
+
+extension EmailAndPasswordViewController: UITableViewDelegate
+{
+    // Occurs when a row (song) is selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("You selected a song")
+    }
+}
+
+extension EmailAndPasswordViewController: UITableViewDataSource
+{
+    // Returns the number of rows in the table.
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return Claims.count
+    }
+    
+    // Insert a cell in a particular location of the table.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
+        
+        
+        // Set the song name from the list of songs
+        cell.label?.text = Claims[indexPath.row][0]
+        cell.value?.text = Claims[indexPath.row][1]
+        
+        return cell
     }
 }
