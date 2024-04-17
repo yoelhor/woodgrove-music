@@ -9,6 +9,8 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

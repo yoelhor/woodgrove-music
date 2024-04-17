@@ -89,6 +89,9 @@ class HomeViewController: UIViewController {
     }
 
     func updateUI() {
+        
+        self.tableView.reloadData()
+        
         //let signedIn = (accountResult != nil)
 
         //signUpButton.isEnabled = !signedIn
@@ -131,8 +134,12 @@ extension HomeViewController: UITableViewDataSource
         
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
+        // Set the song name from the list of songs
         cell.label?.text = songs[indexPath.row]
         
+        // Enable or disable the play button if the user signed-in
+        cell.playButton.isEnabled = (accountResult != nil)
+
         return cell
     }
 }
