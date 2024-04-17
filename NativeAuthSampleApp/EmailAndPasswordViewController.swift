@@ -29,10 +29,15 @@ class EmailAndPasswordViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var resultTextView: UITextView!
-
+    
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
+    
+    // Containers
+    @IBOutlet weak var singInContainer: UIStackView!
+    @IBOutlet weak var singUpContainer: UIStackView!
+    @IBOutlet weak var profileContainer: UIStackView!
     
     @IBOutlet weak var headerLabel: UILabel!
 
@@ -64,7 +69,14 @@ class EmailAndPasswordViewController: UIViewController {
         
         print("***** v1.4 *******")
     }
-
+    
+    // Show the sign-up container
+    @IBAction func signUpStartPressed(_: Any) {
+        singInContainer.isHidden = true
+        singUpContainer.isHidden = false
+        profileContainer.isHidden = true
+    }
+    
     @IBAction func signUpPressed(_: Any) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             resultTextView.text = "Email or password not set"
@@ -120,10 +132,16 @@ class EmailAndPasswordViewController: UIViewController {
         if (signedIn)
         {
             headerLabel.text = "Your profile"
+            singInContainer.isHidden = true
+            singUpContainer.isHidden = true
+            profileContainer.isHidden = false
         }
         else
         {
             headerLabel.text = "Login"
+            singInContainer.isHidden = false
+            singUpContainer.isHidden = true
+            profileContainer.isHidden = true
         }
     }
 

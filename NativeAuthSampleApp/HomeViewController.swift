@@ -155,7 +155,7 @@ extension HomeViewController: CredentialsDelegate {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
                 
-                self.WelcomeMessage = "Hey " + json["name"]! + "! songs you love:"
+                self.WelcomeMessage = "  Hey " + json["name"]! + "! songs you love:"
                 
                 // Show the welcome message
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
