@@ -113,11 +113,28 @@ class EmailAndPasswordViewController: UIViewController {
             return
         }
         
+        var attributes: [String: Any] = [:]
+        
+        // Set the display name
+        if let displayName = signUpNameTextField.text, !displayName.isEmpty {
+            attributes["displayName"] = displayName
+        }
+        
+        // Set the country
+        if let country = signUpCountryTextField.text, !country.isEmpty {
+            attributes["country"] = country
+        }
+
+
+        
         print("Signing up with email \(email) and password")
         
         showResultText("Signing up...")
         
-        nativeAuth.signUp(username: email, password: password, delegate: self)
+        nativeAuth.signUp(username: email, 
+                          password: password,
+                          attributes: attributes,
+                          delegate: self)
     }
     
     // On sign-in pressed, start the sign-in flow
