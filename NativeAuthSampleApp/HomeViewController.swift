@@ -129,9 +129,9 @@ extension HomeViewController: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
         
-        cell.textLabel?.text = songs[indexPath.row]
+        cell.label?.text = songs[indexPath.row]
         
         return cell
     }

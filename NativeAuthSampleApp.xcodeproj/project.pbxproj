@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		642535682BCE635A00A2204C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642535672BCE635A00A2204C /* HomeViewController.swift */; };
+		6425356D2BCF743900A2204C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6425356C2BCF743900A2204C /* CustomTableViewCell.swift */; };
 		8D4CFFDE2B6820F500FC03F8 /* ProtectedAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4CFFDD2B6820F500FC03F8 /* ProtectedAPIViewController.swift */; };
 		9B08477429969264003BA4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477329969264003BA4B4 /* AppDelegate.swift */; };
 		9B08477629969264003BA4B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477529969264003BA4B4 /* SceneDelegate.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		642535672BCE635A00A2204C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6425356C2BCF743900A2204C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		8D4CFFDD2B6820F500FC03F8 /* ProtectedAPIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectedAPIViewController.swift; sourceTree = "<group>"; };
 		9B08477029969264003BA4B4 /* NativeAuthSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeAuthSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B08477329969264003BA4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				9B08477C29969265003BA4B4 /* Assets.xcassets */,
 				9B08477E29969265003BA4B4 /* LaunchScreen.storyboard */,
 				9B08478129969265003BA4B4 /* Info.plist */,
+				6425356C2BCF743900A2204C /* CustomTableViewCell.swift */,
 			);
 			path = NativeAuthSampleApp;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				9BE0CE6029EEE00B00F2C77F /* Configuration.swift in Sources */,
 				642535682BCE635A00A2204C /* HomeViewController.swift in Sources */,
 				9B08477629969264003BA4B4 /* SceneDelegate.swift in Sources */,
+				6425356D2BCF743900A2204C /* CustomTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
