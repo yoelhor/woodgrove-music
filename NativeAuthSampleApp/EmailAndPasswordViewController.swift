@@ -87,7 +87,7 @@ class EmailAndPasswordViewController: UIViewController {
         // When the view will apear chheck the account
         retrieveCachedAccount()
     }
-
+    
     // On start sign-up, show the sign-up container
     @IBAction func readClaimsPressed(_: Any) {
         
@@ -124,14 +124,14 @@ class EmailAndPasswordViewController: UIViewController {
         if let country = signUpCountryTextField.text, !country.isEmpty {
             attributes["country"] = country
         }
-
-
+        
+        
         
         print("Signing up with email \(email) and password")
         
         showResultText("Signing up...")
         
-        nativeAuth.signUp(username: email, 
+        nativeAuth.signUp(username: email,
                           password: password,
                           attributes: attributes,
                           delegate: self)
@@ -288,6 +288,7 @@ extension EmailAndPasswordViewController: SignUpVerifyCodeDelegate {
     }
     
     func onSignUpCompleted(newState: MSAL.SignInAfterSignUpState) {
+        
         showResultText("Signed up successfully!")
         dismissVerifyCodeModal()
         
@@ -331,9 +332,15 @@ extension EmailAndPasswordViewController: SignUpResendCodeDelegate {
 // MARK: SignInAfterSignUpDelegate
 
 extension EmailAndPasswordViewController: SignInAfterSignUpDelegate {
+    
     func onSignInAfterSignUpError(error: MSAL.SignInAfterSignUpError) {
         showResultText("Error signing in after signing up.")
     }
+    
+    private func onSignInCompleted_2(result: MSAL.MSALNativeAuthUserAccountResult) {
+            // User successfully signed in
+            result.getAccessToken(delegate: self)
+        }
 }
 
 // MARK: - Sign In delegates
@@ -341,6 +348,8 @@ extension EmailAndPasswordViewController: SignInAfterSignUpDelegate {
 // MARK: SignInStartDelegate
 
 extension EmailAndPasswordViewController: SignInStartDelegate {
+    
+    
     func onSignInCompleted(result: MSAL.MSALNativeAuthUserAccountResult) {
         print("Signed in: \(result.account.username ?? "")")
         
