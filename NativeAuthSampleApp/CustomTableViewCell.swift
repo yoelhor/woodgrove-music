@@ -9,6 +9,7 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var value: UILabel!
     @IBOutlet weak var playButton: UIButton!
     
     
