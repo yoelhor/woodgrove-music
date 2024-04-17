@@ -33,6 +33,8 @@ class EmailAndPasswordViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
+    
+    @IBOutlet weak var headerLabel: UILabel!
 
     var nativeAuth: MSALNativeAuthPublicClientApplication!
 
@@ -113,6 +115,16 @@ class EmailAndPasswordViewController: UIViewController {
         signUpButton.isEnabled = !signedIn
         signInButton.isEnabled = !signedIn
         signOutButton.isEnabled = signedIn
+        
+        // Set the page header
+        if (signedIn)
+        {
+            headerLabel.text = "Your profile"
+        }
+        else
+        {
+            headerLabel.text = "Login"
+        }
     }
 
     func retrieveCachedAccount() {

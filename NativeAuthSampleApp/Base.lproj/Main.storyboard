@@ -20,12 +20,23 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="37" translatesAutoresizingMaskIntoConstraints="NO" id="zNv-Tz-1Hi">
                                 <rect key="frame" x="20" y="59" width="353" height="694"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" text="Email + Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POR-Hb-X33">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="co0-Qq-ucL" userLabel="Header Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="40.666666666666664"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="woodgrove icon" translatesAutoresizingMaskIntoConstraints="NO" id="bjd-hr-Ytx">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="40.666666666666664"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="hXu-Yf-8ow"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="800" text=" Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="POR-Hb-X33">
+                                                <rect key="frame" x="60" y="0.0" width="293" height="40.666666666666664"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="MQB-oD-T4a" userLabel="Fields Stack View">
                                         <rect key="frame" x="0.0" y="77.666666666666657" width="353" height="79"/>
                                         <subviews>
@@ -138,6 +149,7 @@
                     <tabBarItem key="tabBarItem" title="Login" image="person.crop.circle" catalog="system" id="qWR-sX-H51"/>
                     <connections>
                         <outlet property="emailTextField" destination="jYK-e0-AbA" id="7J7-7n-8JN"/>
+                        <outlet property="headerLabel" destination="POR-Hb-X33" id="AVE-DL-Nk1"/>
                         <outlet property="passwordTextField" destination="RQU-kF-yPS" id="6iW-9V-1gZ"/>
                         <outlet property="resultTextView" destination="WdB-vT-PXQ" id="Et5-xa-lJt"/>
                         <outlet property="signInButton" destination="2Bd-5E-YnL" id="Bb6-jD-w5a"/>
