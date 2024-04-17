@@ -73,8 +73,9 @@ class HomeViewController: UIViewController {
                 challengeTypes: [.OOB]
             )
         } catch {
+            
+            // TBD: user friendly error message
             print("Unable to initialize MSAL \(error)")
-            showResultText("Unable to initialize MSAL")
         }
     }
 
@@ -84,33 +85,21 @@ class HomeViewController: UIViewController {
         retrieveCachedAccount()
     }
 
-    func showResultText(_ text: String) {
-        //resultTextView.text = text
-    }
-
     func updateUI() {
-        
         self.tableView.reloadData()
-        
-        //let signedIn = (accountResult != nil)
-
-        //signUpButton.isEnabled = !signedIn
-        //signInButton.isEnabled = !signedIn
-        //signOutButton.isEnabled = signedIn
     }
 
     func retrieveCachedAccount() {
         accountResult = nativeAuth.getNativeAuthUserAccount()
         if let accountResult = accountResult, let homeAccountId = accountResult.account.homeAccountId?.identifier {
             print("Account found in cache: \(homeAccountId)")
-
+            
+            // The getAccessToken(delegate) accepts a delegate parameter and we must implement the required CredentialsDelegate method.
             accountResult.getAccessToken(delegate: self)
         } else {
             print("No account found in cache")
 
             accountResult = nil
-
-            showResultText("")
 
             updateUI()
         }
@@ -119,17 +108,20 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate
 {
+    // Occurs when a row (song) is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected me")
+        print("You selected  a song")
     }
 }
 
 extension HomeViewController: UITableViewDataSource
 {
+    // Returns the number of rows in the table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
     
+    // Insert a cell in a particular location of the table.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
@@ -144,96 +136,24 @@ extension HomeViewController: UITableViewDataSource
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-// MARK: - CredentialsDelegate methods
-
 extension HomeViewController: CredentialsDelegate {
+    
+    // In the most common scenario, you receive a call to this method indicating
+    // that the user obtained an access token. 
     func onAccessTokenRetrieveCompleted(result: MSALNativeAuthTokenResult) {
+        
+        // MSAL returns the access token, scopes and expiration date for the access token for the account.
         print("Access Token: \(result.accessToken)")
-        showResultText("Signed in. Access Token: \(result.accessToken)")
+        
+        // Update the UI that the user signed-in
         updateUI()
     }
-
+    
+    // MSAL notifies the delegate that the sign-in operation resulted in an error.
     func onAccessTokenRetrieveError(error: MSAL.RetrieveAccessTokenError) {
-        showResultText("Error retrieving access token: \(error.errorDescription ?? "No error description")")
-        dismissVerifyCodeModal()
+        
+        // TBD: user friendly error message
+        print("Error retrieving access token: \(error.errorDescription ?? "No error description")")
     }
 }
 
-// MARK: - Verify Code modal methods
-
-extension HomeViewController {
-    func showVerifyCodeModal(
-        submitCallback: @escaping (_ code: String) -> Void,
-        resendCallback: @escaping () -> Void,
-        cancelCallback: @escaping () -> Void
-    ) {
-        verifyCodeViewController = storyboard?.instantiateViewController(
-            withIdentifier: "VerifyCodeViewController") as? VerifyCodeViewController
-
-        guard let verifyCodeViewController = verifyCodeViewController else {
-            print("Error creating Verify Code view controller")
-            return
-        }
-
-        updateVerifyCodeModal(errorMessage: nil,
-                              submitCallback: submitCallback,
-                              resendCallback: resendCallback,
-                              cancelCallback: cancelCallback)
-
-        present(verifyCodeViewController, animated: true)
-    }
-
-    func updateVerifyCodeModal(
-        errorMessage: String?,
-        submitCallback: @escaping (_ code: String) -> Void,
-        resendCallback: @escaping () -> Void,
-        cancelCallback: @escaping () -> Void
-    ) {
-        guard let verifyCodeViewController = verifyCodeViewController else {
-            return
-        }
-
-        if let errorMessage = errorMessage {
-            verifyCodeViewController.errorLabel.text = errorMessage
-        }
-
-        verifyCodeViewController.onSubmit = { code in
-            DispatchQueue.main.async {
-                submitCallback(code)
-            }
-        }
-
-        verifyCodeViewController.onResend = {
-            DispatchQueue.main.async {
-                resendCallback()
-            }
-        }
-
-        verifyCodeViewController.onCancel = {
-            DispatchQueue.main.async {
-                cancelCallback()
-            }
-        }
-    }
-
-    func dismissVerifyCodeModal() {
-        guard verifyCodeViewController != nil else {
-            print("Unexpected error: Verify Code view controller is nil")
-            return
-        }
-
-        dismiss(animated: true)
-        verifyCodeViewController = nil
-        showResultText("Action cancelled")
-    }
-}
