@@ -194,7 +194,7 @@ extension HomeViewController: CredentialsDelegate {
                 // Show the welcome message
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                     print("Timer fired!")
-                    self.welcomeTo.text = self.WelcomeMessage
+                    self.welcomeTo.text = " Hey " + self.WelcomeMessage + ", songs you love:"
                     self.tableView.reloadData()
                 }
             } catch {
