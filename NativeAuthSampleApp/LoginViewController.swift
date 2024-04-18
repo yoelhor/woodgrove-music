@@ -57,6 +57,7 @@ class LoginViewController: UIViewController {
     // Shared UI elements
     @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var headerLabel: UILabel!
+    let protectedAPIScopes = ["api://wggdemo.onmicrosoft.com/groceries-api/Account.Read"]
     
     // MSAL andtive auth variables
     var nativeAuth: MSALNativeAuthPublicClientApplication!
@@ -148,7 +149,10 @@ class LoginViewController: UIViewController {
         
         showResultText("Signing in...")
         
-        nativeAuth.signIn(username: email, password: password, delegate: self)
+        nativeAuth.signIn(username: email, 
+                          password: password,
+                          scopes: protectedAPIScopes,
+                          delegate: self)
     }
     
     // On sign-out pressed, start the sign-out flow
@@ -292,7 +296,7 @@ extension LoginViewController: SignUpVerifyCodeDelegate {
         showResultText("Signed up successfully!")
         dismissVerifyCodeModal()
         
-        newState.signIn(delegate: self)
+        newState.signIn(scopes: protectedAPIScopes, delegate: self)
     }
 }
 
