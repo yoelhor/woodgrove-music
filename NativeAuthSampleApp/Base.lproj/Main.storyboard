@@ -85,6 +85,7 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="No account? create one">
                                                                     <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                                    <color key="baseForegroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
                                                                     <action selector="signUpStartPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="roZ-Yp-KTg"/>
@@ -127,6 +128,7 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot password?" buttonSize="mini">
                                                                     <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                                                    <color key="baseForegroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
                                                                     <segue destination="qfh-W5-W8G" kind="show" id="jLj-Er-mkk"/>
@@ -148,7 +150,9 @@
                                                     <constraint firstAttribute="height" constant="35" id="Hl4-pX-2qz"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Sign In"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Sign In" cornerStyle="capsule">
+                                                    <color key="baseBackgroundColor" red="0.25437366960000002" green="0.48173457380000001" blue="0.1489238739" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="signInPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="x9B-Y9-esr"/>
                                                 </connections>
@@ -259,7 +263,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b67-RN-KhO">
                                                 <rect key="frame" x="0.0" y="124" width="353" height="0.0"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Sign-up"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Sign-up">
+                                                    <color key="baseBackgroundColor" red="0.25437366960000002" green="0.48173457380000001" blue="0.1489238739" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <action selector="signUpPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rfx-5c-EAf"/>
                                                 </connections>
@@ -501,19 +507,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-8B-BlN" userLabel="Fields Stack View">
-                                        <rect key="frame" x="0.0" y="77.666666666666671" width="353" height="34"/>
+                                        <rect key="frame" x="0.0" y="77.666666666666671" width="353" height="20.333333333333329"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="fVP-Uy-ROw">
-                                                <rect key="frame" x="0.0" y="0.0" width="353" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFB-lO-yUo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="40.666666666666664" height="34"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="40.666666666666664" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-JY-hyR">
-                                                        <rect key="frame" x="93.666666666666657" y="0.0" width="259.33333333333337" height="34"/>
+                                                        <rect key="frame" x="93.666666666666657" y="0.0" width="259.33333333333337" height="20.333333333333332"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                                                     </textField>
@@ -522,31 +528,39 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jNx-r9-75K" userLabel="Buttons View">
-                                        <rect key="frame" x="0.0" y="148.66666666666666" width="353" height="118.99999999999997"/>
+                                        <rect key="frame" x="0.0" y="135" width="353" height="147.33333333333337"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="500" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dGB-3C-3S6" userLabel="Buttons Stack View">
-                                                <rect key="frame" x="104" y="0.0" width="145" height="119"/>
+                                                <rect key="frame" x="104" y="0.0" width="145" height="147.33333333333334"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P22-qR-cAM">
                                                         <rect key="frame" x="0.0" y="0.0" width="145" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Reset Password"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Reset Password" cornerStyle="capsule">
+                                                            <color key="baseBackgroundColor" red="0.25437366960000002" green="0.48173457380000001" blue="0.1489238739" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </buttonConfiguration>
                                                         <connections>
                                                             <action selector="resetPasswordPressed:" destination="qfh-W5-W8G" eventType="touchUpInside" id="E0Y-vh-Lmy"/>
                                                         </connections>
                                                     </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDl-b4-7eG">
+                                                        <rect key="frame" x="0.0" y="42.333333333333343" width="145" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fty-KF-UkH">
-                                                        <rect key="frame" x="0.0" y="42.333333333333343" width="145" height="34.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="70.666666666666657" width="145" height="34.333333333333343"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Sign Out"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Sign Out" cornerStyle="capsule"/>
                                                         <connections>
                                                             <action selector="signOutPressed:" destination="qfh-W5-W8G" eventType="touchUpInside" id="HyY-EZ-ams"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNM-aQ-3kq">
-                                                        <rect key="frame" x="0.0" y="84.666666666666686" width="145" height="34.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="112.99999999999999" width="145" height="34.333333333333329"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Cancel"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Cancel" cornerStyle="capsule"/>
                                                         <connections>
                                                             <action selector="cancelPressed:" destination="qfh-W5-W8G" eventType="touchUpInside" id="vN7-pJ-RYU"/>
                                                         </connections>
@@ -564,7 +578,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Ej-cb-34h" userLabel="Results Stack View">
-                                        <rect key="frame" x="0.0" y="304.66666666666669" width="353" height="553.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="319.33333333333331" width="353" height="538.66666666666674"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Results:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0C-dx-jnW">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="20.333333333333332"/>
@@ -573,7 +587,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1hd-wN-wPj">
-                                                <rect key="frame" x="0.0" y="28.333333333333314" width="353" height="525"/>
+                                                <rect key="frame" x="0.0" y="28.333333333333343" width="353" height="510.33333333333326"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -811,14 +825,16 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8VZ-rB-ZVh">
                                                         <rect key="frame" x="0.0" y="0.0" width="105.66666666666667" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Submit"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Submit" cornerStyle="capsule">
+                                                            <color key="baseBackgroundColor" red="0.25437366960000002" green="0.48173457380000001" blue="0.1489238739" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </buttonConfiguration>
                                                         <connections>
                                                             <action selector="submitPressed:" destination="jsX-mg-s1F" eventType="touchUpInside" id="Pv5-lr-YLs"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ND-8b-g5A">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ND-8b-g5A">
                                                         <rect key="frame" x="0.0" y="59.333333333333371" width="105.66666666666667" height="34.333333333333343"/>
-                                                        <buttonConfiguration key="configuration" style="filled" title="Cancel">
+                                                        <buttonConfiguration key="configuration" style="filled" title="Cancel" cornerStyle="capsule">
                                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
