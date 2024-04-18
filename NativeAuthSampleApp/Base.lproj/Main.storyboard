@@ -392,6 +392,7 @@
                         <outlet property="headerLabel" destination="POR-Hb-X33" id="AVE-DL-Nk1"/>
                         <outlet property="passwordTextField" destination="RQU-kF-yPS" id="6iW-9V-1gZ"/>
                         <outlet property="profileContainer" destination="mFM-Hq-JAF" id="V2f-hP-buK"/>
+                        <outlet property="profileTabBarItem" destination="qWR-sX-H51" id="mVl-gc-GdA"/>
                         <outlet property="resultTextView" destination="WdB-vT-PXQ" id="Et5-xa-lJt"/>
                         <outlet property="signInButton" destination="2Bd-5E-YnL" id="Bb6-jD-w5a"/>
                         <outlet property="signOutButton" destination="1xh-Tz-0h6" id="vzL-BZ-BrH"/>

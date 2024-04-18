@@ -57,6 +57,7 @@ class LoginViewController: UIViewController {
     // Shared UI elements
     @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var profileTabBarItem: UITabBarItem!
     let protectedAPIScopes = ["api://wggdemo.onmicrosoft.com/groceries-api/Account.Read"]
     
     // MSAL andtive auth variables
@@ -185,6 +186,7 @@ class LoginViewController: UIViewController {
         if (signedIn)
         {
             headerLabel.text = "Your profile"
+            profileTabBarItem.title = "Profile"
             singInContainer.isHidden = true
             singUpContainer.isHidden = true
             profileContainer.isHidden = false
@@ -192,6 +194,7 @@ class LoginViewController: UIViewController {
         else
         {
             headerLabel.text = "Login"
+            profileTabBarItem.title = "Login"
             singInContainer.isHidden = false
             singUpContainer.isHidden = true
             profileContainer.isHidden = true
