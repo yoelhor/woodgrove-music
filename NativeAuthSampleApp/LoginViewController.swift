@@ -338,9 +338,9 @@ extension LoginViewController: SignInAfterSignUpDelegate {
     }
     
     private func onSignInCompleted_2(result: MSAL.MSALNativeAuthUserAccountResult) {
-            // User successfully signed in
-            result.getAccessToken(delegate: self)
-        }
+        // User successfully signed in
+        result.getAccessToken(delegate: self)
+    }
 }
 
 // MARK: - Sign In delegates
@@ -392,13 +392,31 @@ extension LoginViewController: CredentialsDelegate {
     // Invokes a REST API to decode the access token and get the claims
     func getClaims(accessToken: String)
     {
-        let url = URL(string: "https://api.woodgrovedemo.com/jwt?token=" + accessToken)!
+
+        var request = URLRequest(url: URL(string: "https://api.woodgrovedemo.com/jwt")!)
         
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        //HTTP Headers
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        // HTTP rerquest body
+        do {
+            let parameters = ["token": accessToken]
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
+            guard let data = data else {
+                print("getClaims is NULL")
+                return
+            }
             
             do {
-                let dictionary = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
+                let dictionary = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, String>
                 
                 // Map the keys and the values into a two dimensional string array
                 var arr = [[String]]()
@@ -419,12 +437,12 @@ extension LoginViewController: CredentialsDelegate {
                     self.tableView.reloadData()
                 }
             } catch {
+                print ("Error related to the REST API data")
                 self.WelcomeMessage = "";
             }
         })
         
         task.resume()
-        
     }
     
     // MSAL notifies the delegate that the sign-in operation resulted in an error.

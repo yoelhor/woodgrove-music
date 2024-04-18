@@ -145,32 +145,65 @@ extension HomeViewController: CredentialsDelegate {
         // MSAL returns the access token, scopes and expiration date for the access token for the account.
         print("Access Token: \(result.accessToken)")
         
+        // Update the UI that the user signed-in
+        updateUI()
         
+        getClaims(accessToken: result.accessToken)
+    }
+    
+    func getClaims(accessToken: String)
+    {
+
+        var request = URLRequest(url: URL(string: "https://api.woodgrovedemo.com/jwt")!)
         
-        let url = URL(string: "https://api.woodgrovedemo.com/jwt?token=" + result.accessToken)!
+        //HTTP Headers
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+        // HTTP rerquest body
+        do {
+            let parameters = ["token": accessToken]
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
             
+            guard let data = data else {
+                print("getClaims is NULL")
+                return
+            }
             
             do {
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, String>
+                let dictionary = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, String>
                 
-                self.WelcomeMessage = "  Hey " + json["name"]! + "! songs you love:"
+                // Map the keys and the values into a two dimensional string array
+                var arr = [[String]]()
+                for (key, value) in dictionary {
+                    var row = [String]()
+                    row.append(key)
+                    row.append(value)
+                    arr.append(row)
+                }
+                
+                //self.Claims = arr
+                self.WelcomeMessage = dictionary["name"]!
                 
                 // Show the welcome message
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                     print("Timer fired!")
                     self.welcomeTo.text = self.WelcomeMessage
+                    self.tableView.reloadData()
                 }
             } catch {
+                print ("Error related to the REST API data")
                 self.WelcomeMessage = "";
             }
         })
         
         task.resume()
-        
-        // Update the UI that the user signed-in
-        updateUI()
     }
     
     // MSAL notifies the delegate that the sign-in operation resulted in an error.
