@@ -99,7 +99,7 @@ class HomeViewController: UIViewController {
             accountResult = nil
             
             // Hide the welcome message
-            self.welcomeTo.text = "";
+            self.welcomeTo.text = " Welcome";
             
             updateUI()
         }
