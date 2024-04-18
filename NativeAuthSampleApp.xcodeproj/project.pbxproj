@@ -14,7 +14,7 @@
 		8D4CFFDE2B6820F500FC03F8 /* ProtectedAPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4CFFDD2B6820F500FC03F8 /* ProtectedAPIViewController.swift */; };
 		9B08477429969264003BA4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477329969264003BA4B4 /* AppDelegate.swift */; };
 		9B08477629969264003BA4B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477529969264003BA4B4 /* SceneDelegate.swift */; };
-		9B08477829969264003BA4B4 /* EmailAndPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477729969264003BA4B4 /* EmailAndPasswordViewController.swift */; };
+		9B08477829969264003BA4B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477729969264003BA4B4 /* LoginViewController.swift */; };
 		9B08477B29969264003BA4B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B08477929969264003BA4B4 /* Main.storyboard */; };
 		9B08477D29969265003BA4B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B08477C29969265003BA4B4 /* Assets.xcassets */; };
 		9B08478029969265003BA4B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B08477E29969265003BA4B4 /* LaunchScreen.storyboard */; };
@@ -47,7 +47,7 @@
 		9B08477029969264003BA4B4 /* NativeAuthSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeAuthSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B08477329969264003BA4B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B08477529969264003BA4B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9B08477729969264003BA4B4 /* EmailAndPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAndPasswordViewController.swift; sourceTree = "<group>"; };
+		9B08477729969264003BA4B4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9B08477A29969264003BA4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9B08477C29969265003BA4B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B08477F29969265003BA4B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		9B73CAD929F6DAC200FC7129 /* Scenario View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9B08477729969264003BA4B4 /* EmailAndPasswordViewController.swift */,
+				9B08477729969264003BA4B4 /* LoginViewController.swift */,
 				9B14AE5A29D33B0D006F7C51 /* ResetPasswordViewController.swift */,
 				8D4CFFDD2B6820F500FC03F8 /* ProtectedAPIViewController.swift */,
 				642535672BCE635A00A2204C /* HomeViewController.swift */,
@@ -217,7 +217,7 @@
 				8D4CFFDE2B6820F500FC03F8 /* ProtectedAPIViewController.swift in Sources */,
 				64101FB42BD1013E00D912D4 /* LibraryViewController.swift in Sources */,
 				9B14AE4D29D204EA006F7C51 /* VerifyCodeViewController.swift in Sources */,
-				9B08477829969264003BA4B4 /* EmailAndPasswordViewController.swift in Sources */,
+				9B08477829969264003BA4B4 /* LoginViewController.swift in Sources */,
 				9B14AE5D29D33CEB006F7C51 /* NewPasswordViewController.swift in Sources */,
 				9B14AE5B29D33B0D006F7C51 /* ResetPasswordViewController.swift in Sources */,
 				9B08477429969264003BA4B4 /* AppDelegate.swift in Sources */,

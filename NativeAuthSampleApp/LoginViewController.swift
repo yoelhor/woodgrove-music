@@ -25,7 +25,7 @@
 import MSAL
 import UIKit
 
-class EmailAndPasswordViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     // Sing-in UI elements
     @IBOutlet weak var singInContainer: UIStackView!
@@ -219,7 +219,7 @@ class EmailAndPasswordViewController: UIViewController {
 
 // MARK: SignUpStartDelegate
 
-extension EmailAndPasswordViewController: SignUpStartDelegate {
+extension LoginViewController: SignUpStartDelegate {
     func onSignUpStartError(error: MSAL.SignUpStartError) {
         if error.isUserAlreadyExists {
             showResultText("Unable to sign up: User already exists")
@@ -257,7 +257,7 @@ extension EmailAndPasswordViewController: SignUpStartDelegate {
 
 // MARK: SignUpVerifyCodeDelegate
 
-extension EmailAndPasswordViewController: SignUpVerifyCodeDelegate {
+extension LoginViewController: SignUpVerifyCodeDelegate {
     func onSignUpVerifyCodeError(error: MSAL.VerifyCodeError, newState: MSAL.SignUpCodeRequiredState?) {
         if error.isInvalidCode {
             guard let newState = newState else {
@@ -298,7 +298,7 @@ extension EmailAndPasswordViewController: SignUpVerifyCodeDelegate {
 
 // MARK: SignUpResendCodeDelegate
 
-extension EmailAndPasswordViewController: SignUpResendCodeDelegate {
+extension LoginViewController: SignUpResendCodeDelegate {
     
     func onSignUpResendCodeError(error: MSAL.ResendCodeError, newState: MSAL.SignUpCodeRequiredState?) {
         print("SignUpResendCodeDelegate: onSignUpResendCodeError: \(error)")
@@ -331,7 +331,7 @@ extension EmailAndPasswordViewController: SignUpResendCodeDelegate {
 
 // MARK: SignInAfterSignUpDelegate
 
-extension EmailAndPasswordViewController: SignInAfterSignUpDelegate {
+extension LoginViewController: SignInAfterSignUpDelegate {
     
     func onSignInAfterSignUpError(error: MSAL.SignInAfterSignUpError) {
         showResultText("Error signing in after signing up.")
@@ -347,7 +347,7 @@ extension EmailAndPasswordViewController: SignInAfterSignUpDelegate {
 
 // MARK: SignInStartDelegate
 
-extension EmailAndPasswordViewController: SignInStartDelegate {
+extension LoginViewController: SignInStartDelegate {
     
     
     func onSignInCompleted(result: MSAL.MSALNativeAuthUserAccountResult) {
@@ -374,7 +374,7 @@ extension EmailAndPasswordViewController: SignInStartDelegate {
 // MARK: CredentialsDelegate
 
 
-extension EmailAndPasswordViewController: CredentialsDelegate {
+extension LoginViewController: CredentialsDelegate {
     
     // In the most common scenario, you receive a call to this method indicating
     // that the user obtained an access token.
@@ -435,7 +435,7 @@ extension EmailAndPasswordViewController: CredentialsDelegate {
 
 // MARK: - Verify Code modal methods
 
-extension EmailAndPasswordViewController {
+extension LoginViewController {
     func showVerifyCodeModal(
         submitCallback: @escaping (_ code: String) -> Void,
         resendCallback: @escaping () -> Void,
@@ -502,7 +502,7 @@ extension EmailAndPasswordViewController {
     }
 }
 
-extension EmailAndPasswordViewController: UITableViewDelegate
+extension LoginViewController: UITableViewDelegate
 {
     // Occurs when a row (song) is selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -510,7 +510,7 @@ extension EmailAndPasswordViewController: UITableViewDelegate
     }
 }
 
-extension EmailAndPasswordViewController: UITableViewDataSource
+extension LoginViewController: UITableViewDataSource
 {
     // Returns the number of rows in the table.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
