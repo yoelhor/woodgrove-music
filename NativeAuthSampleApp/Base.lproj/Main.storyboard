@@ -1026,7 +1026,7 @@
                         <viewLayoutGuide key="safeArea" id="YQ6-jG-GpK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Library" image="list.bullet.rectangle.fill" catalog="system" id="F32-QF-SV4"/>
+                    <tabBarItem key="tabBarItem" title="Library" image="f" id="F32-QF-SV4"/>
                     <navigationItem key="navigationItem" id="HEv-dy-CJt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yP6-Wh-erI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1064,10 +1064,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="f" width="128" height="128"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="icloud" catalog="system" width="128" height="90"/>
         <image name="info.square.fill" catalog="system" width="128" height="114"/>
-        <image name="list.bullet.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="lock.rotation" catalog="system" width="128" height="112"/>
         <image name="music.note" catalog="system" width="96" height="128"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
