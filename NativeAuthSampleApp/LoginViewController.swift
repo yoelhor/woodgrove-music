@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInContainer: UIStackView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signInButton: WgButton!
     
     // Self-Service password reset
     @IBOutlet weak var ssprContainer: UIStackView!
@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
     var newPasswordViewController: NewPasswordViewController?
     @IBOutlet weak var ssprEmailTextField: UITextField!
 
-    @IBOutlet weak var resetPasswordButton: UIButton!
+    @IBOutlet weak var resetPasswordButton: WgButton!
     
     // Sing-up UI elements
     @IBOutlet weak var signUpContainer: UIStackView!
@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpReenterTextField: UITextField!
     @IBOutlet weak var signUpNameTextField: UITextField!
     @IBOutlet weak var signUpCountryTextField: UITextField!
-    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signUpButton: WgButton!
     var verifyCodeViewController: VerifyCodeViewController?
     
     // Prolile UI elements
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var accessTokenTextView: UITextView!
     @IBOutlet weak var welcomeTo: UILabel!
     @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var readClaimsButton: UIButton!
+    @IBOutlet weak var readClaimsButton: WgButton!
     var WelcomeMessage: String!
     var accessToken: String!
     var Claims = [[String]]()
@@ -119,7 +119,6 @@ class LoginViewController: UIViewController {
         if let url = URL(string: "https://jwt.ms/#access_token=" + self.accessToken), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
-        
     }
     
     // On start sign-up, show the sign-up container
@@ -166,6 +165,7 @@ class LoginViewController: UIViewController {
         print("Resetting password for email \(email)")
 
         showResultText("Resetting password...")
+        resetPasswordButton.StartAnimation()
 
         nativeAuth.resetPassword(username: email, delegate: self)
     }
@@ -191,10 +191,9 @@ class LoginViewController: UIViewController {
             attributes["country"] = country
         }
         
-        
-        
         print("Signing up with email \(email) and password")
         
+        signUpButton.StartAnimation()
         showResultText("Signing up...")
         
         nativeAuth.signUp(username: email,
@@ -212,6 +211,7 @@ class LoginViewController: UIViewController {
         
         print("Signing in with email \(email) and password")
         
+        signInButton.StartAnimation()
         showResultText("Signing in...")
         
         nativeAuth.signIn(username: email, 
@@ -294,6 +294,7 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: SignUpStartDelegate {
     func onSignUpStartError(error: MSAL.SignUpStartError) {
+        
         if error.isUserAlreadyExists {
             showResultText("Unable to sign up: User already exists")
         } else if error.isInvalidPassword {
@@ -303,6 +304,8 @@ extension LoginViewController: SignUpStartDelegate {
         } else {
             showResultText("Unexpected error signing up: \(error.errorDescription ?? "No error description")")
         }
+        
+        signUpButton.StopAnimation()
     }
     
     func onSignUpCodeRequired(newState: MSAL.SignUpCodeRequiredState,
@@ -363,6 +366,7 @@ extension LoginViewController: SignUpVerifyCodeDelegate {
     func onSignUpCompleted(newState: MSAL.SignInAfterSignUpState) {
         
         showResultText("Signed up successfully!")
+        signUpButton.StopAnimation()
         dismissVerifyCodeModal()
         
         newState.signIn(scopes: protectedAPIScopes, delegate: self)
@@ -435,6 +439,7 @@ extension LoginViewController: SignInStartDelegate {
     }
     
     func onSignInStartError(error: MSAL.SignInStartError) {
+        
         print("SignInStartDelegate: onSignInStartError: \(error)")
         
         if error.isUserNotFound || error.isInvalidCredentials || error.isInvalidUsername {
@@ -442,6 +447,8 @@ extension LoginViewController: SignInStartDelegate {
         } else {
             showResultText("Error while signing in: \(error.errorDescription ?? "No error description")")
         }
+        
+        signInButton.StopAnimation()
     }
 }
 
@@ -460,6 +467,7 @@ extension LoginViewController: CredentialsDelegate {
         
         accessToken = result.accessToken
         showResultText("Signed in.")
+        signInButton.StopAnimation()
         updateUI()
         
         getClaims(accessToken: result.accessToken)
@@ -673,6 +681,7 @@ extension LoginViewController: ResetPasswordResendCodeDelegate {
         print("ResetPasswordResendCodeDelegate: onResetPasswordResendCodeError: \(error)")
 
         showResultText("Unexpected error while requesting new code")
+        resetPasswordButton.StopAnimation()
         dismissVerifyCodeModal()
     }
 
@@ -771,6 +780,8 @@ extension LoginViewController: ResetPasswordRequiredDelegate {
     }
 
     func onResetPasswordCompleted(newState: MSAL.SignInAfterResetPasswordState) {
+        
+        resetPasswordButton.StopAnimation()
         showResultText("Password reset successfully")
         dismissNewPasswordModal()
 
