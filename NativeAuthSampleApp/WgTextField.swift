@@ -23,13 +23,13 @@ class WgTextField: UITextField {
     
     
     private func setUpField() {
-        tintColor             = .white
-        textColor             = .darkGray
-        font                  = UIFont(name:"VenirNextCondensedDemiBold", size: 18)
+        //tintColor             = .white
+        //textColor             = .darkGray
+        //font                  = UIFont(name:"VenirNextCondensedDemiBold", size: 18)
         //backgroundColor       = UIColor(white: 1.0, alpha: 0.5)
-        autocorrectionType    = .no
-        layer.cornerRadius    = 5.0
-        clipsToBounds         = true
+        //autocorrectionType    = .no
+        //layer.cornerRadius    = 5.0
+        //clipsToBounds         = true
         
         //let placeholder       = self.placeholder != nil ? self.placeholder! : ""
         //let placeholderFont   = UIFont(name:"VenirNextCondensedDemiBold", size: 18)!
@@ -37,8 +37,8 @@ class WgTextField: UITextField {
         //    [NSAttributedString.Key.foregroundColor: UIColor.lightGray,
         //     NSAttributedString.Key.font: placeholderFont])
         
-        let indentView        = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
-        leftView              = indentView
-        leftViewMode          = .always
+        //let indentView        = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        //leftView              = indentView
+        //leftViewMode          = .always
     }
 }

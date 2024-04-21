@@ -22,7 +22,7 @@ class WgForm: UIStackView {
     
  
     private func setupStackView() {
-        tintColor             = .white
+        //tintColor             = .white
 
         backgroundColor       = UIColor(white: 1.0, alpha: 0.8)
         //backgroundColor       = UIColor(red: 39/255, green: 124/255, blue: 15/255, alpha: 0.3)

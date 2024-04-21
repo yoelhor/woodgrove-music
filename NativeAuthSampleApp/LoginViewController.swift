@@ -498,7 +498,7 @@ extension LoginViewController: CredentialsDelegate {
             do {
                 let dictionary = try JSONSerialization.jsonObject(with: data) as! Dictionary<String, String>
                 
-                for (key, value) in dictionary {
+                for (key, _) in dictionary {
                     
                     if (key == "name")
                     {
