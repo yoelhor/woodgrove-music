@@ -56,7 +56,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var accessTokenTextView: UITextView!
     @IBOutlet weak var welcomeTo: UILabel!
-    @IBOutlet var tableView: UITableView!
     @IBOutlet weak var readClaimsButton: WgButton!
     var WelcomeMessage: String!
     var accessToken: String!
@@ -77,9 +76,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         loadBackground()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
         
         // On view load initiate the MSAL library
         do {
@@ -518,7 +514,6 @@ extension LoginViewController: CredentialsDelegate {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                     print("Timer fired!")
                     self.welcomeTo.text = "Welcome " + self.WelcomeMessage
-                    self.tableView.reloadData()
                 }
             } catch {
                 print ("Error related to the REST API data")
@@ -603,37 +598,6 @@ extension LoginViewController {
         
     }
 }
-
-extension LoginViewController: UITableViewDelegate
-{
-    // Occurs when a row (song) is selected
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You selected a song")
-    }
-}
-
-extension LoginViewController: UITableViewDataSource
-{
-    // Returns the number of rows in the table.
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return Claims.count
-    }
-    
-    // Insert a cell in a particular location of the table.
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell =  tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomTableViewCell
-        
-        
-        // Set the song name from the list of songs
-        cell.label?.text = Claims[indexPath.row][0]
-        cell.value?.text = Claims[indexPath.row][1]
-        
-        return cell
-    }
-}
-
 
 /** ################ SSPR starts ################### **/
 
