@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		64101FB42BD1013E00D912D4 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64101FB32BD1013E00D912D4 /* LibraryViewController.swift */; };
 		64101FB62BD1055100D912D4 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64101FB52BD1055100D912D4 /* HelpViewController.swift */; };
+		641E80972BD4DAE400A62D45 /* WgTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E80962BD4DAE400A62D45 /* WgTextField.swift */; };
+		641E80992BD4DAFE00A62D45 /* WgButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E80982BD4DAFE00A62D45 /* WgButton.swift */; };
+		641E809B2BD4F7B100A62D45 /* WgForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641E809A2BD4F7B100A62D45 /* WgForm.swift */; };
 		642535682BCE635A00A2204C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642535672BCE635A00A2204C /* HomeViewController.swift */; };
 		6425356D2BCF743900A2204C /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6425356C2BCF743900A2204C /* CustomTableViewCell.swift */; };
 		9B08477429969264003BA4B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B08477329969264003BA4B4 /* AppDelegate.swift */; };
@@ -40,6 +43,9 @@
 /* Begin PBXFileReference section */
 		64101FB32BD1013E00D912D4 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		64101FB52BD1055100D912D4 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		641E80962BD4DAE400A62D45 /* WgTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WgTextField.swift; sourceTree = "<group>"; };
+		641E80982BD4DAFE00A62D45 /* WgButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WgButton.swift; sourceTree = "<group>"; };
+		641E809A2BD4F7B100A62D45 /* WgForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WgForm.swift; sourceTree = "<group>"; };
 		642535672BCE635A00A2204C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		6425356C2BCF743900A2204C /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		9B08477029969264003BA4B4 /* NativeAuthSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeAuthSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +75,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		641E80932BD4DA9200A62D45 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				641E80962BD4DAE400A62D45 /* WgTextField.swift */,
+				641E80982BD4DAFE00A62D45 /* WgButton.swift */,
+				641E809A2BD4F7B100A62D45 /* WgForm.swift */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
 		9B08476729969264003BA4B4 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +105,7 @@
 		9B08477229969264003BA4B4 /* NativeAuthSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				641E80932BD4DA9200A62D45 /* CustomViews */,
 				9B08477329969264003BA4B4 /* AppDelegate.swift */,
 				9B08477529969264003BA4B4 /* SceneDelegate.swift */,
 				9BE0CE5F29EEE00B00F2C77F /* Configuration.swift */,
@@ -212,9 +229,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				64101FB42BD1013E00D912D4 /* LibraryViewController.swift in Sources */,
+				641E809B2BD4F7B100A62D45 /* WgForm.swift in Sources */,
 				9B14AE4D29D204EA006F7C51 /* VerifyCodeViewController.swift in Sources */,
 				9B08477829969264003BA4B4 /* LoginViewController.swift in Sources */,
+				641E80972BD4DAE400A62D45 /* WgTextField.swift in Sources */,
 				9B14AE5D29D33CEB006F7C51 /* NewPasswordViewController.swift in Sources */,
+				641E80992BD4DAFE00A62D45 /* WgButton.swift in Sources */,
 				9B14AE5B29D33B0D006F7C51 /* ResetPasswordViewController.swift in Sources */,
 				9B08477429969264003BA4B4 /* AppDelegate.swift in Sources */,
 				64101FB62BD1055100D912D4 /* HelpViewController.swift in Sources */,

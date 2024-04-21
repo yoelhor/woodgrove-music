@@ -28,13 +28,13 @@ import UIKit
 class LoginViewController: UIViewController {
     
     // Sing-in UI elements
-    @IBOutlet weak var singInContainer: UIStackView!
+    @IBOutlet weak var signInContainer: UIStackView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
     // Sing-up UI elements
-    @IBOutlet weak var singUpContainer: UIStackView!
+    @IBOutlet weak var signUpContainer: UIStackView!
     @IBOutlet weak var signUpEmailTextField: UITextField!
     @IBOutlet weak var signUpPasswordTextField: UITextField!
     @IBOutlet weak var signUpReenterTextField: UITextField!
@@ -55,6 +55,7 @@ class LoginViewController: UIViewController {
     var Claims = [[String]]()
     
     // Shared UI elements
+    let backgroundImageView = UIImageView()
     @IBOutlet weak var resultTextView: UITextView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var profileTabBarItem: UITabBarItem!
@@ -66,6 +67,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadBackground()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -90,6 +93,18 @@ class LoginViewController: UIViewController {
         retrieveCachedAccount()
     }
     
+    func loadBackground() {
+        view.addSubview(backgroundImageView)
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+        backgroundImageView.image = UIImage(named: "BG-480-1018-bw")
+        view.sendSubviewToBack(backgroundImageView)
+    }
+    
     // On start sign-up, show the sign-up container
     @IBAction func readClaimsPressed(_: Any) {
         
@@ -101,8 +116,16 @@ class LoginViewController: UIViewController {
     
     // On start sign-up, show the sign-up container
     @IBAction func signUpStartPressed(_: Any) {
-        singInContainer.isHidden = true
-        singUpContainer.isHidden = false
+        signInContainer.isHidden = true
+        signUpContainer.isHidden = false
+        profileContainer.isHidden = true
+    }
+    
+    
+    // On start sign-in, show the sign-in container
+    @IBAction func signInStartPressed(_: Any) {
+        signInContainer.isHidden = false
+        signUpContainer.isHidden = true
         profileContainer.isHidden = true
     }
     
@@ -187,16 +210,16 @@ class LoginViewController: UIViewController {
         {
             headerLabel.text = "Your profile"
             profileTabBarItem.title = "Profile"
-            singInContainer.isHidden = true
-            singUpContainer.isHidden = true
+            signInContainer.isHidden = true
+            signUpContainer.isHidden = true
             profileContainer.isHidden = false
         }
         else
         {
             headerLabel.text = "Login"
             profileTabBarItem.title = "Login"
-            singInContainer.isHidden = false
-            singUpContainer.isHidden = true
+            signInContainer.isHidden = false
+            signUpContainer.isHidden = true
             profileContainer.isHidden = true
         }
     }
@@ -361,6 +384,9 @@ extension LoginViewController: SignInStartDelegate {
         print("Signed in: \(result.account.username ?? "")")
         
         accountResult = result
+        
+        // Empty the password field
+        passwordTextField.text = ""
         
         result.getAccessToken(delegate: self)
     }
