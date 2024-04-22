@@ -56,10 +56,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signOutButton: UIButton!
     @IBOutlet weak var profileNameTextField: UITextField!
     @IBOutlet weak var profileCountryTextField: UITextField!
+    @IBOutlet weak var profileLoyaltyNumberLabel: UILabel!
     @IBOutlet weak var readClaimsButton: WgButton!
     var profileName: String!
     var profileCountry: String!
     var accessToken: String!
+    var profileLoyaltyNumber: String!
     
     // Shared UI elements
     let backgroundImageView = UIImageView()
@@ -123,6 +125,7 @@ class LoginViewController: UIViewController {
         ssprContainer.isHidden = true
         signUpContainer.isHidden = false
         profileContainer.isHidden = true
+        resultTextView.text = ""
     }
     
     
@@ -132,6 +135,7 @@ class LoginViewController: UIViewController {
         ssprContainer.isHidden = true
         signUpContainer.isHidden = true
         profileContainer.isHidden = true
+        resultTextView.text = ""
     }
     
     // On start remember your password, show the sign-in container
@@ -140,6 +144,7 @@ class LoginViewController: UIViewController {
         ssprContainer.isHidden = true
         signUpContainer.isHidden = true
         profileContainer.isHidden = true
+        resultTextView.text = ""
     }
     
     // On start SSPR, show the SSPR container
@@ -148,6 +153,7 @@ class LoginViewController: UIViewController {
         ssprContainer.isHidden = false
         signUpContainer.isHidden = true
         profileContainer.isHidden = true
+        resultTextView.text = ""
     }
     
     // SSPR
@@ -509,6 +515,11 @@ extension LoginViewController: CredentialsDelegate {
                     {
                         self.profileCountry = dictionary["country"]!
                     }
+                    
+                    if (key == "loyaltyNumber")
+                    {
+                        self.profileLoyaltyNumber = dictionary["loyaltyNumber"]!
+                    }
                 }
                 
                 // Show the welcome message
@@ -522,6 +533,11 @@ extension LoginViewController: CredentialsDelegate {
                     // Get the country from the access token (temp)
                     if self.profileCountry != nil {
                         self.profileCountryTextField.text = self.profileCountry
+                    }
+                    
+                    // Get the country from the access token (temp)
+                    if self.profileLoyaltyNumber != nil {
+                        self.profileLoyaltyNumberLabel.text = self.profileLoyaltyNumber
                     }
                     
                     

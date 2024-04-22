@@ -335,18 +335,35 @@
                                                                     </switch>
                                                                 </subviews>
                                                             </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-aC-hPp">
+                                                                <rect key="frame" x="0.0" y="100" width="373" height="0.0"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Loyalty number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQf-3X-Ec3">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="331.66666666666669" height="0.0"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="0.28999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx9-vI-ttw">
+                                                                        <rect key="frame" x="331.66666666666669" y="0.0" width="41.333333333333314" height="0.0"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="WeU-fR-DAZ">
-                                                                <rect key="frame" x="0.0" y="100" width="373" height="30.333333333333343"/>
+                                                                <rect key="frame" x="0.0" y="125" width="373" height="5.3333333333333428"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zy6-C3-SyH">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="30.333333333333332"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="171.66666666666666" height="5.333333333333333"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="filled" title="Update" cornerStyle="capsule">
                                                                             <color key="baseBackgroundColor" red="0.25437366960000002" green="0.48173457380000001" blue="0.1489238739" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         </buttonConfiguration>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUY-Ra-4Iz">
-                                                                        <rect key="frame" x="201.66666666666663" y="0.0" width="171.33333333333337" height="30.333333333333332"/>
+                                                                        <rect key="frame" x="201.66666666666663" y="0.0" width="171.33333333333337" height="5.333333333333333"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="filled" title="Delete" cornerStyle="capsule">
                                                                             <color key="baseForegroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -363,7 +380,6 @@
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WdB-vT-PXQ">
                                         <rect key="frame" x="0.0" y="684" width="373" height="0.0"/>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -391,6 +407,7 @@
                         <outlet property="passwordTextField" destination="RQU-kF-yPS" id="6iW-9V-1gZ"/>
                         <outlet property="profileContainer" destination="mFM-Hq-JAF" id="V2f-hP-buK"/>
                         <outlet property="profileCountryTextField" destination="LWf-4O-izP" id="LiG-NE-crt"/>
+                        <outlet property="profileLoyaltyNumberLabel" destination="sx9-vI-ttw" id="uSo-Re-MUj"/>
                         <outlet property="profileNameTextField" destination="FMU-GF-g9o" id="Iju-6T-U8R"/>
                         <outlet property="profileTabBarItem" destination="qWR-sX-H51" id="mVl-gc-GdA"/>
                         <outlet property="resetPasswordButton" destination="IqY-ix-jOU" id="nrw-Kg-8g3"/>
